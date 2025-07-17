@@ -5,7 +5,7 @@ import { useSwipeable } from 'react-swipeable';
 import Slice from "../asset/Slice.png";
 import Catchup from "../asset/Catchup.png";
 import Garnier from "../asset/Garnier.png";
-import Punch from "../asset/punch .png";
+import Punch from "../asset/punch.png";
 
 type Project = {
   id: number;
