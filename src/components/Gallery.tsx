@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { ExternalLink, Heart } from 'lucide-react';
+import { useSwipeable } from 'react-swipeable';
+
 import Slice from "../asset/Slice.png";
 import Catchup from "../asset/Catchup.png";
 import Garnier from "../asset/Garnier.png";
 import Punch from "../asset/punch .png";
-
 
 type Project = {
   id: number;
@@ -104,6 +105,12 @@ export const Gallery = () => {
     }
   };
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: nextImage,
+    onSwipedRight: prevImage,
+    trackMouse: true,
+  });
+
   return (
     <section id="gallery" className="py-20 px-6">
       <div className="container mx-auto">
@@ -136,7 +143,10 @@ export const Gallery = () => {
           {filteredProjects.map((project, i) => (
             <div
               key={project.id}
-              onClick={() => { setModalProject(project); setIndex(0); }}
+              onClick={() => {
+                setModalProject(project);
+                setIndex(0);
+              }}
               className="group relative overflow-hidden rounded-2xl glass-effect hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer"
               data-scroll-animation
               style={{ animationDelay: `${i * 0.1}s` }}
@@ -147,7 +157,9 @@ export const Gallery = () => {
                   alt={project.title}
                   className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-80 transition-opacity duration-300`} />
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-80 transition-opacity duration-300`}
+                />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                   <div className="text-center text-white p-4">
                     <ExternalLink className="mx-auto mb-2" size={24} />
@@ -177,7 +189,7 @@ export const Gallery = () => {
         </div>
 
         {modalProject && (
-          <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center px-4">
+          <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center px-4 overflow-y-auto">
             <div className="fixed inset-0 z-40" onClick={() => setModalProject(null)} />
             <button
               onClick={() => setModalProject(null)}
@@ -186,23 +198,26 @@ export const Gallery = () => {
               &times;
             </button>
             <div className="relative z-50 max-w-screen-lg w-full">
-              <h2 className="text-white text-center text-2xl font-bold mb-4">{modalProject.title}</h2>
-              {filter === 'All' ? (
-                <div className="flex items-center justify-center gap-6">
+              <h2 className="text-white text-center text-xl sm:text-2xl font-bold mb-4">{modalProject.title}</h2>
+              {modalProject.images.length > 1 ? (
+                <div
+                  className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
+                  {...swipeHandlers}
+                >
                   <button
                     onClick={prevImage}
-                    className="text-white text-4xl font-bold hover:text-neon-cyan"
+                    className="text-white text-4xl font-bold hover:text-neon-cyan px-4 py-2 z-50"
                   >
                     ←
                   </button>
                   <img
                     src={modalProject.images[index]}
                     alt="slide"
-                    className="max-h-[80vh] w-auto rounded-xl object-contain shadow-lg"
+                    className="max-h-[70vh] w-full max-w-xs sm:max-w-md rounded-xl object-contain shadow-lg"
                   />
                   <button
                     onClick={nextImage}
-                    className="text-white text-4xl font-bold hover:text-neon-cyan"
+                    className="text-white text-4xl font-bold hover:text-neon-cyan px-4 py-2 z-50"
                   >
                     →
                   </button>
@@ -212,7 +227,7 @@ export const Gallery = () => {
                   <img
                     src={modalProject.images[0]}
                     alt="slide"
-                    className="max-h-[80vh] w-auto rounded-xl object-contain shadow-lg"
+                    className="max-h-[70vh] w-auto rounded-xl object-contain shadow-lg"
                   />
                 </div>
               )}
