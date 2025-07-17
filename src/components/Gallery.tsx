@@ -5,6 +5,7 @@ import Catchup from "../asset/Catchup.png";
 import Garnier from "../asset/Garnier.png";
 import Punch from "../asset/punch .png";
 
+
 type Project = {
   id: number;
   title: string;
@@ -106,7 +107,6 @@ export const Gallery = () => {
   return (
     <section id="gallery" className="py-20 px-6">
       <div className="container mx-auto">
-        {/* Header */}
         <div className="text-center mb-16" data-scroll-animation>
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             <span className="gradient-text">Featured Work</span>
@@ -116,7 +116,6 @@ export const Gallery = () => {
           </p>
         </div>
 
-        {/* Filters */}
         <div className="flex flex-wrap justify-center gap-4 mb-12" data-scroll-animation>
           {categories.map((category) => (
             <button
@@ -133,7 +132,6 @@ export const Gallery = () => {
           ))}
         </div>
 
-        {/* Project Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, i) => (
             <div
@@ -179,52 +177,49 @@ export const Gallery = () => {
         </div>
 
         {modalProject && (
-  <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center px-4">
-    <div className="fixed inset-0 z-40" onClick={() => setModalProject(null)} />
-
-    <button
-      onClick={() => setModalProject(null)}
-      className="absolute top-5 right-6 text-white text-4xl z-50"
-    >
-      &times;
-    </button>
-
-    <div className="relative z-50 max-w-screen-lg w-full">
-      <h2 className="text-white text-center text-2xl font-bold mb-4">{modalProject.title}</h2>
-
-      {filter === 'All' ? (
-        <div className="flex items-center justify-center gap-6">
-          <button
-            onClick={prevImage}
-            className="text-white text-4xl font-bold hover:text-neon-cyan"
-          >
-            ←
-          </button>
-          <img
-            src={modalProject.images[index]}
-            alt="slide"
-            className="max-h-[80vh] w-auto rounded-xl object-contain shadow-lg"
-          />
-          <button
-            onClick={nextImage}
-            className="text-white text-4xl font-bold hover:text-neon-cyan"
-          >
-            →
-          </button>
-        </div>
-      ) : (
-        <div className="flex justify-center">
-          <img
-            src={modalProject.images[0]}
-            alt="slide"
-            className="max-h-[80vh] w-auto rounded-xl object-contain shadow-lg"
-          />
-        </div>
-      )}
-    </div>
-  </div>
-)}
-</div>  {/* ← This closes container mx-auto */}
-</section>  /* ← This was missing and causing ALL errors */
-
-  )}
+          <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center px-4">
+            <div className="fixed inset-0 z-40" onClick={() => setModalProject(null)} />
+            <button
+              onClick={() => setModalProject(null)}
+              className="absolute top-5 right-6 text-white text-4xl z-50"
+            >
+              &times;
+            </button>
+            <div className="relative z-50 max-w-screen-lg w-full">
+              <h2 className="text-white text-center text-2xl font-bold mb-4">{modalProject.title}</h2>
+              {filter === 'All' ? (
+                <div className="flex items-center justify-center gap-6">
+                  <button
+                    onClick={prevImage}
+                    className="text-white text-4xl font-bold hover:text-neon-cyan"
+                  >
+                    ←
+                  </button>
+                  <img
+                    src={modalProject.images[index]}
+                    alt="slide"
+                    className="max-h-[80vh] w-auto rounded-xl object-contain shadow-lg"
+                  />
+                  <button
+                    onClick={nextImage}
+                    className="text-white text-4xl font-bold hover:text-neon-cyan"
+                  >
+                    →
+                  </button>
+                </div>
+              ) : (
+                <div className="flex justify-center">
+                  <img
+                    src={modalProject.images[0]}
+                    alt="slide"
+                    className="max-h-[80vh] w-auto rounded-xl object-contain shadow-lg"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};

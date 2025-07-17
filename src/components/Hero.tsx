@@ -1,92 +1,122 @@
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
+
+
 export const Hero = () => {
-  const [animationComplete, setAnimationComplete] = useState(false);
-  const [textVisible, setTextVisible] = useState(false);
+  const [showText, setShowText] = useState(false);
 
   useEffect(() => {
-    const timer1 = setTimeout(() => setAnimationComplete(true), 2000);
-    const timer2 = setTimeout(() => setTextVisible(true), 2500);
-    
-    return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-    };
+    const timer = setTimeout(() => setShowText(true), 2000);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Floating Character/Object */}
-      <div className={`absolute inset-0 flex items-center justify-center transition-all duration-2000 ${
-        animationComplete ? 'translate-y-0' : '-translate-y-full'
-      }`}>
-        <div className="relative">
-          {/* Main floating element */}
-          <div className="w-32 h-32 md:w-48 md:h-48 relative animate-float">
-            <div className="absolute inset-0 bg-gradient-to-br from-neon-purple via-neon-cyan to-neon-pink rounded-full opacity-80 blur-sm"></div>
-            <div className="absolute inset-2 bg-gradient-to-br from-neon-purple via-neon-cyan to-neon-pink rounded-full flex items-center justify-center">
-              <span className="text-6xl md:text-8xl font-bold text-white">S</span>
-            </div>
-          </div>
-          
-          {/* Particle trails */}
-          <div className="absolute inset-0">
-            {[...Array(12)].map((_, i) => (
-              <div
-                key={i}
-                className="particle animate-particle"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 3}s`,
-                  animationDuration: `${3 + Math.random() * 2}s`,
-                }}
-              />
-            ))}
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
+    >
+      {/* Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-zinc-900 to-zinc-800 opacity-90 z-0" />
+      <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-5 z-0" />
+
+      {/* Floating Red Orb */}
+      <motion.div
+        initial={{ y: -150, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 2, ease: 'easeOut' }}
+        className="absolute inset-0 flex items-center justify-center z-10"
+      >
+        <div className="relative w-40 h-40 md:w-56 md:h-56 animate-float">
+          <div className="absolute inset-0 bg-gradient-to-br from-red-600 via-white to-red-500 rounded-full blur-2xl opacity-60" />
+          <div className="absolute inset-3 bg-black rounded-full flex items-center justify-center border-4 border-red-600/30 shadow-xl shadow-red-600/30">
+            <span className="text-white text-7xl md:text-9xl font-luxury tracking-widest">S</span>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Text Content */}
-      <div className={`relative z-10 text-center transition-all duration-1000 ${
-        textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}>
-        <h1 className="text-5xl md:text-8xl font-bold mb-6">
-          <span className="gradient-text">Saksham Studios</span>
-        </h1>
-        <div className="relative mb-8">
-          <p className="text-xl md:text-2xl text-gray-300 font-light overflow-hidden whitespace-nowrap">
-            <span className={`inline-block ${textVisible ? 'animate-typewriter' : ''}`}>
-              Creative Designer & Visual Storyteller
-            </span>
-          </p>
-          <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-neon-purple to-transparent"></div>
-        </div>
-        
-        <p className="text-gray-400 max-w-2xl mx-auto mb-12 px-4">
-          Crafting stunning visual experiences that blend creativity with strategy. 
-          From brand identity to digital art, I bring ideas to life through innovative design.
-        </p>
+      {/* Random white particle sparkles */}
+      {[...Array(10)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2 h-2 rounded-full bg-white opacity-20 blur-sm z-0"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            y: ['0%', '30%', '0%'],
+            opacity: [0.1, 0.5, 0.1],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 4 + Math.random() * 2,
+            delay: Math.random() * 3,
+          }}
+        />
+      ))}
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="px-8 py-3 bg-gradient-to-r from-neon-purple to-neon-cyan rounded-full text-white font-semibold hover:shadow-lg hover:shadow-neon-purple/50 transition-all duration-300 transform hover:scale-105">
+      {/* Main Content */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        animate={showText ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 1.2 }}
+        className="relative z-20 text-center px-4"
+      >
+        <motion.h1
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 1 }}
+          className="text-5xl md:text-7xl font-luxury text-white mb-4 tracking-wide"
+        >
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-white to-red-600 drop-shadow-[0_4px_20px_rgba(220,38,38,0.5)]">
+            Saksham Verse
+          </span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-light"
+        >
+          Creative Designer & Visual Storyteller
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="text-gray-400 max-w-2xl mx-auto mt-4"
+        >
+          Crafting stunning visual experiences that blend creativity with strategy. From brand identity to digital art, I bring ideas to life through innovative design.
+        </motion.p>
+
+        {/* Buttons */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 2, duration: 0.8 }}
+          className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
+        >
+          <button className="px-8 py-3 bg-gradient-to-r from-red-600 to-white rounded-full text-black font-semibold shadow-md shadow-red-600/30 hover:scale-105 hover:shadow-lg transition-all duration-300">
             View My Work
           </button>
-          <button className="px-8 py-3 neon-border rounded-full text-white font-semibold hover:bg-neon-purple/10 transition-all duration-300">
+          <button className="px-8 py-3 border border-red-600 rounded-full text-white font-semibold backdrop-blur-md hover:bg-red-600/10 transition-all duration-300">
             Get In Touch
           </button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <ChevronDown className="text-neon-purple" size={32} />
-      </div>
-
-      {/* Glowing orbs */}
-      <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-neon-cyan rounded-full opacity-60 animate-pulse"></div>
-      <div className="absolute top-3/4 right-1/4 w-6 h-6 bg-neon-pink rounded-full opacity-40 animate-pulse" style={{ animationDelay: '1s' }}></div>
-      <div className="absolute top-1/2 right-1/6 w-3 h-3 bg-neon-purple rounded-full opacity-80 animate-pulse" style={{ animationDelay: '2s' }}></div>
+      {/* Scroll Icon */}
+      <motion.div
+        animate={{ y: [0, 10, 0] }}
+        transition={{ repeat: Infinity, duration: 2 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+      >
+        <ChevronDown className="text-red-600 animate-glow" size={32} />
+      </motion.div>
     </section>
   );
 };

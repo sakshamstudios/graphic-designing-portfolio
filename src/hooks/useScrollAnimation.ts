@@ -1,35 +1,38 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-export const useScrollAnimation = (threshold: number = 0.1) => {
-  const [isVisible, setIsVisible] = useState(false);
+type ScrollAnimationOptions = {
+  threshold?: number;
+  repeat?: boolean;
+  rootMargin?: string;
+};
 
+export const useScrollAnimation = ({
+  threshold = 0.1,
+  repeat = false,
+  rootMargin = '0px',
+}: ScrollAnimationOptions = {}) => {
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          const el = entry.target;
+
+          if (entry.isIntersecting) {
+            el.classList.add('aos-animate');
+            if (!repeat) observer.unobserve(el);
+          } else {
+            if (repeat) {
+              el.classList.remove('aos-animate');
+            }
+          }
+        });
       },
-      { threshold }
+      { threshold, rootMargin }
     );
 
-    const elements = document.querySelectorAll('[data-scroll-animation]');
+    const elements = document.querySelectorAll<HTMLElement>('[data-scroll-animation]');
     elements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, [threshold]);
-
-  return isVisible;
-};
-
-export const useParallax = () => {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  return scrollY;
+  }, [threshold, repeat, rootMargin]);
 };
