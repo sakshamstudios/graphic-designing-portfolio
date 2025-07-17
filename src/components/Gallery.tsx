@@ -2,11 +2,6 @@ import { useState } from 'react';
 import { ExternalLink, Heart } from 'lucide-react';
 import { useSwipeable } from 'react-swipeable';
 
-import Slice from "../asset/Slice.png";
-import Catchup from "../asset/Catchup.png";
-import Garnier from "../asset/Garnier.png";
-import Punch from "../asset/punch.png";
-
 type Project = {
   id: number;
   title: string;
@@ -23,7 +18,12 @@ const projects: Project[] = [
     id: 1,
     title: 'Brand Identity System',
     category: 'Branding',
-    images: [Catchup, Slice, Garnier, Punch],
+    images: [
+      '/assets/Catchup.png',
+      '/assets/Slice.png',
+      '/assets/Garnier.png',
+      '/assets/Punch.png',
+    ],
     description: 'Complete brand identity design for a tech startup',
     tags: ['Logo Design', 'Brand Guidelines', 'Typography'],
     color: 'from-neon-purple to-neon-pink',
@@ -33,7 +33,7 @@ const projects: Project[] = [
     id: 11,
     title: 'Slice Design',
     category: 'Branding',
-    images: [Slice],
+    images: ['/assets/Slice.png'],
     description: 'Slice branding visual',
     tags: ['Logo Design'],
     color: 'from-yellow-400 to-orange-500',
@@ -43,7 +43,7 @@ const projects: Project[] = [
     id: 12,
     title: 'Catchup Design',
     category: 'Branding',
-    images: [Catchup],
+    images: ['/assets/Catchup.png'],
     description: 'Catchup product branding',
     tags: ['Packaging'],
     color: 'from-red-400 to-red-600',
@@ -53,7 +53,7 @@ const projects: Project[] = [
     id: 13,
     title: 'Garnier Design',
     category: 'Branding',
-    images: [Garnier],
+    images: ['/assets/Garnier.png'],
     description: 'Garnier marketing design',
     tags: ['Typography'],
     color: 'from-green-400 to-green-600',
@@ -63,7 +63,7 @@ const projects: Project[] = [
     id: 14,
     title: 'Punch Design',
     category: 'Branding',
-    images: [Punch],
+    images: ['/assets/Punch.png'],
     description: 'Punch label design',
     tags: ['Illustration'],
     color: 'from-pink-400 to-pink-600',
@@ -213,7 +213,7 @@ export const Gallery = () => {
                   <img
                     src={modalProject.images[index]}
                     alt="slide"
-                    className="max-h-[70vh] w-full max-w-xs sm:max-w-md rounded-xl object-contain shadow-lg"
+                    className="max-h-[90vh] w-full max-w-[95vw] rounded-xl object-contain shadow-xl"
                   />
                   <button
                     onClick={nextImage}
@@ -227,7 +227,7 @@ export const Gallery = () => {
                   <img
                     src={modalProject.images[0]}
                     alt="slide"
-                    className="max-h-[70vh] w-auto rounded-xl object-contain shadow-lg"
+                    className="max-h-[90vh] w-full max-w-[95vw] rounded-xl object-contain shadow-xl"
                   />
                 </div>
               )}
