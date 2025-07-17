@@ -71,7 +71,7 @@ export const Hero = () => {
           className="text-5xl md:text-7xl font-luxury text-white mb-4 tracking-wide"
         >
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-white to-red-600 drop-shadow-[0_4px_20px_rgba(220,38,38,0.5)]">
-            Saksham Ve
+            Saksham Verse
           </span>
         </motion.h1>
 
