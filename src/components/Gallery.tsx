@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { ExternalLink, Heart } from 'lucide-react';
 import { useSwipeable } from 'react-swipeable';
 
+import Slice from "../asset/Slice.png";
+import Catchup from "../asset/Catchup.png";
+import Garnier from "../asset/Garnier.png";
+import Punch from "../asset/punch.png";
+
 type Project = {
   id: number;
   title: string;
@@ -18,12 +23,7 @@ const projects: Project[] = [
     id: 1,
     title: 'Brand Identity System',
     category: 'Branding',
-    images: [
-      '/assets/Catchup.png',
-      '/assets/Slice.png',
-      '/assets/Garnier.png',
-      '/assets/Punch.png',
-    ],
+    images: [Catchup, Slice, Garnier, Punch],
     description: 'Complete brand identity design for a tech startup',
     tags: ['Logo Design', 'Brand Guidelines', 'Typography'],
     color: 'from-neon-purple to-neon-pink',
@@ -33,7 +33,7 @@ const projects: Project[] = [
     id: 11,
     title: 'Slice Design',
     category: 'Branding',
-    images: ['/assets/Slice.png'],
+    images: [Slice],
     description: 'Slice branding visual',
     tags: ['Logo Design'],
     color: 'from-yellow-400 to-orange-500',
@@ -43,7 +43,7 @@ const projects: Project[] = [
     id: 12,
     title: 'Catchup Design',
     category: 'Branding',
-    images: ['/assets/Catchup.png'],
+    images: [Catchup],
     description: 'Catchup product branding',
     tags: ['Packaging'],
     color: 'from-red-400 to-red-600',
@@ -53,7 +53,7 @@ const projects: Project[] = [
     id: 13,
     title: 'Garnier Design',
     category: 'Branding',
-    images: ['/assets/Garnier.png'],
+    images: [Garnier],
     description: 'Garnier marketing design',
     tags: ['Typography'],
     color: 'from-green-400 to-green-600',
@@ -63,7 +63,7 @@ const projects: Project[] = [
     id: 14,
     title: 'Punch Design',
     category: 'Branding',
-    images: ['/assets/Punch.png'],
+    images: [Punch],
     description: 'Punch label design',
     tags: ['Illustration'],
     color: 'from-pink-400 to-pink-600',
@@ -84,6 +84,7 @@ export const Gallery = () => {
   const [filter, setFilter] = useState('All');
   const [modalProject, setModalProject] = useState<Project | null>(null);
   const [index, setIndex] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const categories = ['All', 'Branding', 'Digital Art', 'UI/UX', 'Print Design', 'Web Design', 'Packaging'];
 
@@ -96,12 +97,14 @@ export const Gallery = () => {
   const nextImage = () => {
     if (modalProject) {
       setIndex((prev) => (prev + 1) % modalProject.images.length);
+      setImageLoaded(false);
     }
   };
 
   const prevImage = () => {
     if (modalProject) {
       setIndex((prev) => (prev - 1 + modalProject.images.length) % modalProject.images.length);
+      setImageLoaded(false);
     }
   };
 
@@ -114,7 +117,7 @@ export const Gallery = () => {
   return (
     <section id="gallery" className="py-20 px-6">
       <div className="container mx-auto">
-        <div className="text-center mb-16" data-scroll-animation>
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             <span className="gradient-text">Featured Work</span>
           </h2>
@@ -123,7 +126,7 @@ export const Gallery = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12" data-scroll-animation>
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((category) => (
             <button
               key={category}
@@ -140,26 +143,23 @@ export const Gallery = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, i) => (
+          {filteredProjects.map((project) => (
             <div
               key={project.id}
               onClick={() => {
                 setModalProject(project);
                 setIndex(0);
+                setImageLoaded(false);
               }}
               className="group relative overflow-hidden rounded-2xl glass-effect hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer"
-              data-scroll-animation
-              style={{ animationDelay: `${i * 0.1}s` }}
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={project.images?.[0]}
+                  src={project.images[0]}
                   alt={project.title}
                   className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-80 transition-opacity duration-300`}
-                />
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-80 transition-opacity duration-300`} />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                   <div className="text-center text-white p-4">
                     <ExternalLink className="mx-auto mb-2" size={24} />
@@ -201,9 +201,14 @@ export const Gallery = () => {
               <h2 className="text-white text-center text-xl sm:text-2xl font-bold mb-4">{modalProject.title}</h2>
               {modalProject.images.length > 1 ? (
                 <div
-                  className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
+                  className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 relative"
                   {...swipeHandlers}
                 >
+                  {!imageLoaded && (
+                    <div className="absolute inset-0 flex items-center justify-center z-40">
+                      <div className="loader border-4 border-t-transparent rounded-full w-8 h-8 animate-spin border-white" />
+                    </div>
+                  )}
                   <button
                     onClick={prevImage}
                     className="text-white text-4xl font-bold hover:text-neon-cyan px-4 py-2 z-50"
@@ -213,7 +218,8 @@ export const Gallery = () => {
                   <img
                     src={modalProject.images[index]}
                     alt="slide"
-                    className="max-h-[90vh] w-full max-w-[95vw] rounded-xl object-contain shadow-xl"
+                    onLoad={() => setImageLoaded(true)}
+                    className="h-[75vh] sm:h-[80vh] w-auto max-w-full rounded-xl object-contain shadow-xl transition-all duration-300 ease-in-out"
                   />
                   <button
                     onClick={nextImage}
@@ -227,7 +233,7 @@ export const Gallery = () => {
                   <img
                     src={modalProject.images[0]}
                     alt="slide"
-                    className="max-h-[90vh] w-full max-w-[95vw] rounded-xl object-contain shadow-xl"
+                    className="h-[75vh] sm:h-[80vh] w-auto max-w-full rounded-xl object-contain shadow-xl transition-all duration-300 ease-in-out"
                   />
                 </div>
               )}
