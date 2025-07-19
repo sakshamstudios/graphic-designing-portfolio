@@ -7,6 +7,7 @@ import Catchup from "../asset/Catchup.png";
 import Garnier from "../asset/Garnier.png";
 import Punch from "../asset/punch.png";
 
+// --- Shared type ---
 type Project = {
   id: number;
   title: string;
@@ -18,6 +19,7 @@ type Project = {
   isSub?: boolean;
 };
 
+// --- Original Data for Main Section (untouched) ---
 const projects: Project[] = [
   {
     id: 1,
@@ -80,7 +82,40 @@ const projects: Project[] = [
   },
 ];
 
-export const Gallery = () => {
+// --- Additional Projects for More Projects section ---
+const moreProjects: Project[] = [
+  {
+    id: 100,
+    title: 'UI Concepts',
+    category: 'UI/UX',
+    images: ['https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg'],
+    description: 'Modern UI kit for dashboard layout',
+    tags: ['UI', 'Dashboard', 'Figma'],
+    color: 'from-purple-500 to-indigo-500',
+  },
+  {
+    id: 101,
+    title: 'Packaging Prototype',
+    category: 'Packaging',
+    images: ['https://images.pexels.com/photos/1125133/pexels-photo-1125133.jpeg'],
+    description: 'Eco-friendly packaging design for new product line',
+    tags: ['Sustainable', 'Print Ready'],
+    color: 'from-green-300 to-emerald-600',
+  },
+];
+
+// --- Reusable Section Component ---
+const FeaturedWorkSection = ({
+  title,
+  description,
+  projectList,
+  uniqueId,
+}: {
+  title: string;
+  description: string;
+  projectList: Project[];
+  uniqueId: string;
+}) => {
   const [filter, setFilter] = useState('All');
   const [modalProject, setModalProject] = useState<Project | null>(null);
   const [index, setIndex] = useState(0);
@@ -88,7 +123,7 @@ export const Gallery = () => {
 
   const categories = ['All', 'Branding', 'Digital Art', 'UI/UX', 'Print Design', 'Web Design', 'Packaging'];
 
-  const filteredProjects = projects.filter((project) => {
+  const filteredProjects = projectList.filter((project) => {
     if (filter === 'All') return !project.isSub;
     if (filter === 'Branding') return project.category === 'Branding' && project.title !== 'Brand Identity System';
     return project.category === filter;
@@ -115,14 +150,14 @@ export const Gallery = () => {
   });
 
   return (
-    <section id="gallery" className="py-20 px-6">
+    <section id={uniqueId} className="py-20 px-6">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="gradient-text">Featured Work</span>
+            <span className="gradient-text">{title}</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            A showcase of creative projects that push boundaries and tell compelling stories
+            {description}
           </p>
         </div>
 
@@ -199,48 +234,65 @@ export const Gallery = () => {
             </button>
             <div className="relative z-50 max-w-screen-lg w-full">
               <h2 className="text-white text-center text-xl sm:text-2xl font-bold mb-4">{modalProject.title}</h2>
-              {modalProject.images.length > 1 ? (
-                <div
-                  className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 relative"
-                  {...swipeHandlers}
-                >
-                  {!imageLoaded && (
-                    <div className="absolute inset-0 flex items-center justify-center z-40">
-                      <div className="loader border-4 border-t-transparent rounded-full w-8 h-8 animate-spin border-white" />
-                    </div>
-                  )}
+              <div
+                className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 relative"
+                {...swipeHandlers}
+              >
+                {!imageLoaded && (
+                  <div className="absolute inset-0 flex items-center justify-center z-40">
+                    <div className="loader border-4 border-t-transparent rounded-full w-8 h-8 animate-spin border-white" />
+                  </div>
+                )}
+                {modalProject.images.length > 1 && (
                   <button
                     onClick={prevImage}
                     className="text-white text-4xl font-bold hover:text-neon-cyan px-4 py-2 z-50"
                   >
                     ←
                   </button>
-                  <img
-                    src={modalProject.images[index]}
-                    alt="slide"
-                    onLoad={() => setImageLoaded(true)}
-                    className="h-[75vh] sm:h-[80vh] w-auto max-w-full rounded-xl object-contain shadow-xl transition-all duration-300 ease-in-out"
-                  />
+                )}
+                <img
+                  src={modalProject.images[index]}
+                  alt="slide"
+                  onLoad={() => setImageLoaded(true)}
+                  className="h-[75vh] sm:h-[80vh] w-auto max-w-full rounded-xl object-contain shadow-xl transition-all duration-300 ease-in-out"
+                />
+                {modalProject.images.length > 1 && (
                   <button
                     onClick={nextImage}
                     className="text-white text-4xl font-bold hover:text-neon-cyan px-4 py-2 z-50"
                   >
                     →
                   </button>
-                </div>
-              ) : (
-                <div className="flex justify-center">
-                  <img
-                    src={modalProject.images[0]}
-                    alt="slide"
-                    className="h-[75vh] sm:h-[80vh] w-auto max-w-full rounded-xl object-contain shadow-xl transition-all duration-300 ease-in-out"
-                  />
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         )}
       </div>
     </section>
+  );
+};
+
+// --- Main Exported Gallery Component ---
+export const Gallery = () => {
+  return (
+    <>
+      {/* ✅ Original Section with its own description */}
+      <FeaturedWorkSection
+        title="Featured Work"
+        description="A showcase of creative projects that push boundaries and tell compelling stories"
+        projectList={projects}
+        uniqueId="gallery-original"
+      />
+
+      {/* ✅ Second section with different description */}
+      <FeaturedWorkSection
+        title="Free Stock by Me"
+        description="Download high-quality product photos captured by me — free to use for personal and commercial projects. No attribution needed. ✨"
+        projectList={moreProjects}
+        uniqueId="gallery-more"
+      />
+    </>
   );
 };

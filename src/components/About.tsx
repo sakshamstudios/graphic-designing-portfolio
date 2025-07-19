@@ -5,7 +5,7 @@ const designTools = [
   { name: 'Photoshop', icon: '🎨', proficiency: 95 },
   { name: 'Illustrator', icon: '✏️', proficiency: 80 },
   { name: 'Figma', icon: '🎯', proficiency: 50 },
-  { name: 'After Effects', icon: '🎬', proficiency: 40 },
+  { name: 'Premiere Pro', icon: '🎬', proficiency: 40 },
 ];
 
 const stats = [
@@ -55,17 +55,15 @@ export const About = () => {
               <h2 className="text-5xl font-luxury mb-6 bg-gradient-to-r from-red-600 via-white to-red-600 bg-clip-text text-transparent">About Me</h2>
               <div className="space-y-4 text-gray-300 leading-relaxed font-light">
                 <p>
-                  I'm a passionate creative designer with over 8 years of experience in crafting
-                  timeless brand stories. I blend artistry with strategy to create designs
-                  that are both stunning and meaningful.
+                  Hi, I’m Saksham — a Graphic Designer and Visual Storyteller.
+                  Design isn’t just what I do — it’s how I think. I bring ideas to life through bold visuals, clean layouts, and thoughtful creativity.
                 </p>
                 <p>
-                  Whether it's building brand identities or delivering immersive digital experiences,
-                  I design with purpose and a touch of elegance that resonates deeply.
+                  From branding and social media posts to thumbnails, I craft designs that connect with audiences and leave an impact. 
+                  Alongside designing, I also create content on YouTube, sharing my creative journey and adding more depth to my visual skills.
                 </p>
                 <p>
-                  Outside the screen, I dive into art galleries, street photography, and
-                  soulful coffee—where ideas are born.
+                  I believe every project is a chance to tell a story — through color, typography, and smart design choices that speak louder than words.
                 </p>
               </div>
             </div>
