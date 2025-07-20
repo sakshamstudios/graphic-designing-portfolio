@@ -12,10 +12,13 @@ export const useScrollAnimation = ({
   rootMargin = '0px',
 }: ScrollAnimationOptions = {}) => {
   useEffect(() => {
+    // ✅ Production-safe check
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const el = entry.target;
+          const el = entry.target as HTMLElement;
 
           if (entry.isIntersecting) {
             el.classList.add('aos-animate');
