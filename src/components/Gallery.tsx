@@ -1,3 +1,4 @@
+// 📁 Gallery.tsx or wherever your component is
 import { useState } from 'react';
 import { ExternalLink, Heart } from 'lucide-react';
 import { useSwipeable } from 'react-swipeable';
@@ -6,6 +7,8 @@ import Slice from "../asset/Slice.png";
 import Catchup from "../asset/Catchup.png";
 import Garnier from "../asset/Garnier.png";
 import Punch from "../asset/punch.png";
+import Cetaphil from "../asset/Cetaphil.png";
+import Himalaya from "../asset/Himalaya.png";
 
 // --- Shared type ---
 type Project = {
@@ -25,61 +28,28 @@ const projects: Project[] = [
     id: 1,
     title: 'Brand Identity System',
     category: 'Branding',
-    images: [Catchup, Slice, Garnier, Punch],
-    description: 'Complete brand identity design for a tech startup',
+    images: [Catchup, Slice, Garnier],
+    description: 'Complete brand identity design for a famous products',
     tags: ['Logo Design', 'Brand Guidelines', 'Typography'],
     color: 'from-neon-purple to-neon-pink',
     isSub: false,
   },
-  {
-    id: 11,
-    title: 'Slice Design',
-    category: 'Branding',
-    images: [Slice],
-    description: 'Slice branding visual',
-    tags: ['Logo Design'],
-    color: 'from-yellow-400 to-orange-500',
-    isSub: true,
-  },
-  {
-    id: 12,
-    title: 'Catchup Design',
-    category: 'Branding',
-    images: [Catchup],
-    description: 'Catchup product branding',
-    tags: ['Packaging'],
-    color: 'from-red-400 to-red-600',
-    isSub: true,
-  },
-  {
-    id: 13,
-    title: 'Garnier Design',
-    category: 'Branding',
-    images: [Garnier],
-    description: 'Garnier marketing design',
-    tags: ['Typography'],
-    color: 'from-green-400 to-green-600',
-    isSub: true,
-  },
-  {
-    id: 14,
-    title: 'Punch Design',
-    category: 'Branding',
-    images: [Punch],
-    description: 'Punch label design',
-    tags: ['Illustration'],
-    color: 'from-pink-400 to-pink-600',
-    isSub: true,
-  },
+  { id: 11, title: 'Slice Design',   category: 'Branding',    images: [Slice],       description: 'Slice branding visual',      tags: ['Logo Design'],     color: 'from-yellow-400 to-orange-500',    isSub: true },
+  { id: 12, title: 'Catchup Design', category: 'Branding',    images: [Catchup],     description: 'Catchup product branding',   tags: ['Packaging'],       color: 'from-red-400 to-red-600',          isSub: true },
+  { id: 13, title: 'Garnier Design', category: 'Branding',    images: [Garnier],     description: 'Garnier marketing design',   tags: ['Typography'],      color: 'from-green-400 to-green-600',      isSub: true },
+
   {
     id: 2,
-    title: 'Digital Art Collection',
-    category: 'Digital Art',
-    images: ['https://images.pexels.com/photos/3618918/pexels-photo-3618918.jpeg'],
-    description: 'Abstract digital artwork series exploring color and form',
-    tags: ['Digital Art', 'Illustration', 'Abstract'],
+    title: 'Social Media Post Collection',
+    category: 'Social Media Post',
+    images: [Cetaphil, Himalaya],
+    description: 'Social media Post of many Famous products',
+    tags: ['Social media post', 'Photoshop', 'Typography'],
     color: 'from-neon-cyan to-neon-green',
   },
+  { id: 15, title: 'Himalaya Facewash', category: 'Social Media Post', images: [Himalaya], description: 'Himalaya Facewash social media post ', tags: ['Photoshop'], color: 'from-pink-400 to-pink-600', isSub: true },
+  { id: 16, title: 'Cetaphil', category: 'Social Media Post', images: [Cetaphil], description: 'Cetaphil Facewash social media post', tags: ['Photoshop'], color: 'from-blue-400 to-blue-600', isSub: true },
+  { id: 17, title: 'Punch Design',   category: 'Social Media Post', images: [Punch], description: 'Punch label design', tags: ['Illustration'], color: 'from-pink-400 to-pink-600', isSub: true },
 ];
 
 // --- Additional Projects for More Projects section ---
@@ -121,13 +91,16 @@ const FeaturedWorkSection = ({
   const [index, setIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  const categories = ['All', 'Branding', 'Digital Art', 'UI/UX', 'Print Design', 'Web Design', 'Packaging'];
+  const categories = ['All', 'Branding', 'Social Media Post', 'UI/UX', 'Print Design', 'Web Design', 'Packaging'];
 
   const filteredProjects = projectList.filter((project) => {
-    if (filter === 'All') return !project.isSub;
-    if (filter === 'Branding') return project.category === 'Branding' && project.title !== 'Brand Identity System';
-    return project.category === filter;
-  });
+  if (filter === 'All') return !project.isSub;
+  if (filter === 'Branding') return project.category === 'Branding' && project.title !== 'Brand Identity System';
+  if (filter === 'Social Media Post') {
+    return project.category === 'Social Media Post' && project.title !== 'Social Media Post Collection';
+  }
+  return project.category.toLowerCase() === filter.toLowerCase();
+});
 
   const nextImage = () => {
     if (modalProject) {
@@ -156,9 +129,7 @@ const FeaturedWorkSection = ({
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             <span className="gradient-text">{title}</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            {description}
-          </p>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">{description}</p>
         </div>
 
         <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -192,8 +163,19 @@ const FeaturedWorkSection = ({
                 <img
                   src={project.images[0]}
                   alt={project.title}
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-60 object-cover object-top transition-transform duration-500 group-hover:scale-110"
                 />
+
+               {/* <img
+               src={project.images[0]}
+               alt={project.title}
+               className={`w-full ${
+               project.category === "Social Media Post"
+               ? "h-auto object-contain"
+               : "h-56 object-cover object-top"
+               } transition-transform duration-500 group-hover:scale-105`}
+               /> */}
+
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-80 transition-opacity duration-300`} />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                   <div className="text-center text-white p-4">
@@ -244,12 +226,7 @@ const FeaturedWorkSection = ({
                   </div>
                 )}
                 {modalProject.images.length > 1 && (
-                  <button
-                    onClick={prevImage}
-                    className="text-white text-4xl font-bold hover:text-neon-cyan px-4 py-2 z-50"
-                  >
-                    ←
-                  </button>
+                  <button onClick={prevImage} className="text-white text-4xl font-bold hover:text-neon-cyan px-4 py-2 z-50">←</button>
                 )}
                 <img
                   src={modalProject.images[index]}
@@ -258,12 +235,7 @@ const FeaturedWorkSection = ({
                   className="h-[75vh] sm:h-[80vh] w-auto max-w-full rounded-xl object-contain shadow-xl transition-all duration-300 ease-in-out"
                 />
                 {modalProject.images.length > 1 && (
-                  <button
-                    onClick={nextImage}
-                    className="text-white text-4xl font-bold hover:text-neon-cyan px-4 py-2 z-50"
-                  >
-                    →
-                  </button>
+                  <button onClick={nextImage} className="text-white text-4xl font-bold hover:text-neon-cyan px-4 py-2 z-50">→</button>
                 )}
               </div>
             </div>
@@ -278,15 +250,12 @@ const FeaturedWorkSection = ({
 export const Gallery = () => {
   return (
     <>
-      {/* ✅ Original Section with its own description */}
       <FeaturedWorkSection
         title="Featured Work"
         description="A showcase of creative projects that push boundaries and tell compelling stories"
         projectList={projects}
         uniqueId="gallery-original"
       />
-
-      {/* ✅ Second section with different description */}
       <FeaturedWorkSection
         title="Free Stock by Me"
         description="Download high-quality product photos captured by me — free to use for personal and commercial projects. No attribution needed. ✨"
