@@ -8,7 +8,13 @@ import Catchup from "../asset/Catchup.png";
 import Garnier from "../asset/Garnier.png";
 import Punch from "../asset/punch.png";
 import Cetaphil from "../asset/Cetaphil.png";
-import Himalaya from "../asset/Himalaya.png";
+import Himalaya from "../asset/Himalaya.png"; 
+import Redbull from "../asset/Redbull.png"; 
+import Raw_Mixed_Fruit from "../asset/Raw_Mixed_Fruit.png"; 
+import braclate_Heropage from "../asset/braclate_Heropage.png"; 
+import Rocket_heropage from "../asset/Rocket_heropage.png"; 
+import Divine_Light from "../asset/Divine_Light.png"; 
+import PULSE_Verticle from "../asset/PULSE_Verticle.png"; 
 
 // --- Shared type ---
 type Project = {
@@ -26,34 +32,76 @@ type Project = {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Brand Identity System',
-    category: 'Branding',
-    images: [Catchup, Slice, Garnier],
-    description: 'Complete brand identity design for a famous products',
-    tags: ['Logo Design', 'Brand Guidelines', 'Typography'],
-    color: 'from-neon-purple to-neon-pink',
-    isSub: false,
+    title:        'Brand Identity System',
+    category:     'Branding',
+    images:       [Catchup, Slice, Garnier,Redbull],
+    description:  'Complete brand identity design for a famous products',
+    tags:         ['Logo Design', 'Brand Guidelines', 'Typography'],
+    color:        'from-neon-purple to-neon-pink',
+    isSub:        false,
   },
   { id: 11, title: 'Slice Design',   category: 'Branding',    images: [Slice],       description: 'Slice branding visual',      tags: ['Logo Design'],     color: 'from-yellow-400 to-orange-500',    isSub: true },
   { id: 12, title: 'Catchup Design', category: 'Branding',    images: [Catchup],     description: 'Catchup product branding',   tags: ['Packaging'],       color: 'from-red-400 to-red-600',          isSub: true },
   { id: 13, title: 'Garnier Design', category: 'Branding',    images: [Garnier],     description: 'Garnier marketing design',   tags: ['Typography'],      color: 'from-green-400 to-green-600',      isSub: true },
-
+  { id: 14, title: 'Redbull Design', category: 'Branding',    images: [Redbull],     description: 'Redbull marketing design',   tags: ['Typography'],      color: 'from-green-400 to-green-600',      isSub: true },
+  
   {
     id: 2,
     title: 'Social Media Post Collection',
     category: 'Social Media Post',
-    images: [Cetaphil, Himalaya],
+    images: [Cetaphil, Himalaya,Punch,Raw_Mixed_Fruit,PULSE_Verticle],
     description: 'Social media Post of many Famous products',
     tags: ['Social media post', 'Photoshop', 'Typography'],
     color: 'from-neon-cyan to-neon-green',
   },
-  { id: 15, title: 'Himalaya Facewash', category: 'Social Media Post', images: [Himalaya], description: 'Himalaya Facewash social media post ', tags: ['Photoshop'], color: 'from-pink-400 to-pink-600', isSub: true },
-  { id: 16, title: 'Cetaphil', category: 'Social Media Post', images: [Cetaphil], description: 'Cetaphil Facewash social media post', tags: ['Photoshop'], color: 'from-blue-400 to-blue-600', isSub: true },
-  { id: 17, title: 'Punch Design',   category: 'Social Media Post', images: [Punch], description: 'Punch label design', tags: ['Illustration'], color: 'from-pink-400 to-pink-600', isSub: true },
+  { id: 15, title: 'Himalaya Facewash',   category: 'Social Media Post', images: [Himalaya],         description: 'Himalaya Facewash social media post ',   tags: ['Photoshop'],    color: 'from-pink-400 to-pink-600',    isSub: true },
+  { id: 16, title: 'Cetaphil',            category: 'Social Media Post', images: [Cetaphil],         description: 'Cetaphil Facewash social media post',    tags: ['Photoshop'],    color: 'from-blue-400 to-blue-600',    isSub: true },
+  { id: 17, title: 'Punch Design',        category: 'Social Media Post', images: [Punch],            description: 'Punch label design',                     tags: ['Illustration'], color: 'from-pink-400 to-pink-600',    isSub: true },
+  { id: 17, title: 'Raw Mixed Fruit',     category: 'Social Media Post', images: [Raw_Mixed_Fruit],  description: 'Raw Mixed Fruit design',                 tags: ['photoshop'],    color: 'from-pink-400 to-pink-600',    isSub: true },
+  { id: 17, title: 'PULSE',               category: 'Social Media Post', images: [PULSE_Verticle],   description: 'PULSE Verticle cool design',             tags: ['photoshop'],    color: 'from-green-400 to-green-600',  isSub: true },
+
+
+   {
+    id: 3,
+    title:          'UI Concepts',
+    category:       'UI/UX',
+    images:         ['Rocket_heropage,braclate_Heropage'],
+    description:    'Modern UI kit for dashboard layout',
+    tags:           ['UI', 'Dashboard', 'Figma'],
+    color:          'from-purple-500 to-indigo-500',
+  },
+  { id: 15, title: 'Space Realted Startup heropage', category: 'UI/UX', images: [Rocket_heropage], description: 'Innovating the future of space exploration — one mission at a time', tags: ['Photoshop','heropage'], color: 'from-pink-400 to-pink-600', isSub: true },
+  { id: 16, title: 'braclate_Heropage',              category: 'UI/UX', images: [braclate_Heropage], description: 'A stylish accessory brand offering handcrafted bracelets that reflect personal style and elegance', tags: ['Photoshop'], color: 'from-blue-400 to-blue-600', isSub: true },
+
+
+   {
+    id: 4,
+    title: 'AD Design',
+    category: 'AD Design',
+    images: ['Divine_Light'],
+    description: 'A visually striking ad design crafted to capture attention',
+    tags: ['photoshop', 'AD'],
+    color: 'from-green-300 to-emerald-600',
+  },
+  { id: 15, title: 'Divine Light', category: 'AD Design', images: [Divine_Light], description: 'Lighting a diya symbolizes the removal of darkness and the arrival of hope', tags: ['Photoshop','AD'], color: 'from-pink-400 to-pink-600', isSub: true },
 ];
 
+
 // --- Additional Projects for More Projects section ---
-const moreProjects: Project[] = [
+
+// --- Shared type ---
+type Project_copy = {
+  id: number;
+  title: string;
+  category: string;
+  images: string[];
+  description: string;
+  tags: string[];
+  color: string;
+  isSub?: boolean;
+};
+
+const moreProjects: Project_copy[] = [
   {
     id: 100,
     title: 'UI Concepts',
@@ -63,6 +111,7 @@ const moreProjects: Project[] = [
     tags: ['UI', 'Dashboard', 'Figma'],
     color: 'from-purple-500 to-indigo-500',
   },
+  
   {
     id: 101,
     title: 'Packaging Prototype',
@@ -72,6 +121,17 @@ const moreProjects: Project[] = [
     tags: ['Sustainable', 'Print Ready'],
     color: 'from-green-300 to-emerald-600',
   },
+
+  {
+    id: 102,
+    title: 'AD Design',
+    category: 'AD Design',
+    images: ['https://images.pexels.com/photos/1125133/pexels-photo-1125133.jpeg'],
+    description: 'A visually striking ad design crafted to capture attention',
+    tags: ['photoshop', 'AD'],
+    color: 'from-green-300 to-emerald-600',
+  },
+  { id: 15, title: 'Divine Light', category: 'Divine Light', images: [Divine_Light], description: 'Lighting a diya symbolizes the removal of darkness and the arrival of hope', tags: ['Photoshop','AD'], color: 'from-pink-400 to-pink-600', isSub: true },
 ];
 
 // --- Reusable Section Component ---
@@ -91,14 +151,15 @@ const FeaturedWorkSection = ({
   const [index, setIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  const categories = ['All', 'Branding', 'Social Media Post', 'UI/UX', 'Print Design', 'Web Design', 'Packaging'];
+  const categories = ['All', 'Branding', 'Social Media Post', 'UI/UX', 'AD Design', 'Web Design', 'Packaging'];
 
   const filteredProjects = projectList.filter((project) => {
-  if (filter === 'All') return !project.isSub;
-  if (filter === 'Branding') return project.category === 'Branding' && project.title !== 'Brand Identity System';
-  if (filter === 'Social Media Post') {
-    return project.category === 'Social Media Post' && project.title !== 'Social Media Post Collection';
-  }
+  if (filter === 'All')                   return !project.isSub;
+  if (filter === 'Branding')              return project.category === 'Branding' &&              project.title !==   'Brand Identity System';
+  if (filter === 'Social Media Post')   { return project.category === 'Social Media Post' &&     project.title !==   'Social Media Post Collection';}
+  if (filter === 'AD Design')           { return project.category === 'AD Design' &&             project.title !==   'AD Design'}
+  if (filter === 'UI/UX')               { return project.category === 'UI/UX' &&                 project.title !==   'UI/UX';}
+
   return project.category.toLowerCase() === filter.toLowerCase();
 });
 
