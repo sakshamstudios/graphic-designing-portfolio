@@ -70,7 +70,7 @@ const projects: Project[] = [
     tags:           ['UI', 'Dashboard', 'Figma'],
     color:          'from-purple-500 to-indigo-500',
   },
-  { id: 15, title: 'Space Realted Startup heropage', category: 'UI/UX', images: [Rocket_heropage], description: 'Innovating the future of space exploration — one mission at a time', tags: ['Photoshop','heropage'], color: 'from-pink-400 to-pink-600', isSub: true },
+  { id: 15, title: 'Space Startup heropage', category: 'UI/UX', images: [Rocket_heropage], description: 'Innovating the future of space exploration — one mission at a time', tags: ['Photoshop','heropage'], color: 'from-pink-400 to-pink-600', isSub: true },
   { id: 16, title: 'braclate_Heropage',              category: 'UI/UX', images: [braclate_Heropage], description: 'A stylish accessory brand offering handcrafted bracelets that reflect personal style and elegance', tags: ['Photoshop'], color: 'from-blue-400 to-blue-600', isSub: true },
 
 
