@@ -56,9 +56,9 @@ const projects: Project[] = [
   },
   { id: 15, title: 'Himalaya Facewash',   category: 'Social Media Post', images: [Himalaya],         description: 'Himalaya Facewash social media post ',   tags: ['Photoshop'],    color: 'from-pink-400 to-pink-600',    isSub: true },
   { id: 16, title: 'Cetaphil',            category: 'Social Media Post', images: [Cetaphil],         description: 'Cetaphil Facewash social media post',    tags: ['Photoshop'],    color: 'from-blue-400 to-blue-600',    isSub: true },
-  { id: 17, title: 'Punch Design',        category: 'Social Media Post', images: [Punch],            description: 'Punch label design',                     tags: ['Illustration'], color: 'from-pink-400 to-pink-600',    isSub: true },
-  { id: 17, title: 'Raw Mixed Fruit',     category: 'Social Media Post', images: [Raw_Mixed_Fruit],  description: 'Raw Mixed Fruit design',                 tags: ['photoshop'],    color: 'from-pink-400 to-pink-600',    isSub: true },
-  { id: 17, title: 'PULSE',               category: 'Social Media Post', images: [PULSE_Verticle],   description: 'PULSE Verticle cool design',             tags: ['photoshop'],    color: 'from-green-400 to-green-600',  isSub: true },
+  { id: 18, title: 'Punch Design',        category: 'Social Media Post', images: [Punch],            description: 'Punch label design',                     tags: ['Illustration'], color: 'from-pink-400 to-pink-600',    isSub: true },
+  { id: 19, title: 'Raw Mixed Fruit',     category: 'Social Media Post', images: [Raw_Mixed_Fruit],  description: 'Raw Mixed Fruit design',                 tags: ['photoshop'],    color: 'from-pink-400 to-pink-600',    isSub: true },
+  { id: 20, title: 'PULSE',               category: 'Social Media Post', images: [PULSE_Verticle],   description: 'PULSE Verticle cool design',             tags: ['photoshop'],    color: 'from-green-400 to-green-600',  isSub: true },
 
 
    {
