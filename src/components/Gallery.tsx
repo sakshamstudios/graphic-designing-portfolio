@@ -67,7 +67,7 @@ const projects: Project[] = [
     id: 3,
     title:          'UI Concepts',
     category:       'UI/UX',
-    images:         [braclate_Heropage,Rocket_heropage],
+    images:         [Watch,Kiwi,braclate_Heropage,Rocket_heropage],
     description:    'Modern UI kit for dashboard layout',
     tags:           ['UI', 'Dashboard', 'Figma'],
     color:          'from-purple-500 to-indigo-500',
