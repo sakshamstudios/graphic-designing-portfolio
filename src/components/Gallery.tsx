@@ -15,8 +15,8 @@ import braclate_Heropage from "../asset/braclate_Heropage.png";
 import Rocket_heropage from "../asset/Rocket_heropage.png"; 
 import Divine_Light from "../asset/Divine_Light.png"; 
 import PULSE_Verticle from "../asset/PULSE_Verticle.png"; 
-import Kiwi from "../asset/Kiwi.png";
-import Watch from "../asset/Watch.png";
+import Kiwi from "../asset/Kiwi.jpg";
+import Watch from "../asset/Watch.jpg";
 
 // --- Shared type ---
 type Project = {
