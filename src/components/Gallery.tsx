@@ -15,6 +15,8 @@ import braclate_Heropage from "../asset/braclate_Heropage.png";
 import Rocket_heropage from "../asset/Rocket_heropage.png"; 
 import Divine_Light from "../asset/Divine_Light.png"; 
 import PULSE_Verticle from "../asset/PULSE_Verticle.png"; 
+import Kiwi from "../asset/Kiwi.png";
+import Watch from "../asset/Watch.png";
 
 // --- Shared type ---
 type Project = {
@@ -70,8 +72,10 @@ const projects: Project[] = [
     tags:           ['UI', 'Dashboard', 'Figma'],
     color:          'from-purple-500 to-indigo-500',
   },
-  { id: 15, title: 'Space Startup heropage', category: 'UI/UX', images: [Rocket_heropage], description: 'Innovating the future of space exploration — one mission at a time', tags: ['Photoshop','heropage'], color: 'from-pink-400 to-pink-600', isSub: true },
-  { id: 16, title: 'braclate_Heropage',              category: 'UI/UX', images: [braclate_Heropage], description: 'A stylish accessory brand offering handcrafted bracelets that reflect personal style and elegance', tags: ['Photoshop'], color: 'from-blue-400 to-blue-600', isSub: true },
+  { id: 15, title: 'Space Startup heropage',         category: 'UI/UX', images: [Rocket_heropage],   description: 'Innovating the future of space exploration — one mission at a time',                                                                     tags: ['Photoshop','heropage'],          color: 'from-pink-400 to-pink-600', isSub: true },
+  { id: 16, title: 'braclate Heropage',              category: 'UI/UX', images: [braclate_Heropage], description: 'A stylish accessory brand offering handcrafted bracelets that reflect personal style and elegance',                                      tags: ['Photoshop'],                     color: 'from-blue-400 to-blue-600', isSub: true },
+  { id: 16, title: 'Kiwi Juice Hero Page',           category: 'UI/UX', images: [Kiwi],              description: 'Inspired by the natural zest of kiwi, this bold and refreshing design captures the perfect balance of freshness and modern aesthetics.', tags: ['Photoshop','Heropage','banner'], color: 'from-blue-400 to-blue-600', isSub: true },
+  { id: 16, title: 'Watch Hero Page',                category: 'UI/UX', images: [Watch],             description: 'Timeless elegance meets modern design — crafted for those who value every second.',                                      tags: ['Photoshop','Heropage','banner'], color: 'from-blue-400 to-blue-600', isSub: true },
 
 
    {
