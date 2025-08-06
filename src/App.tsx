@@ -9,8 +9,7 @@ import { Footer } from "./components/Footer";
 import { AnimatedBackground } from "./components/AnimatedBackground";
 import { useScrollAnimation } from "./hooks/useScrollAnimation";
 
-// ✅ Import chatbot component
-import AiChat from './ai-bot';
+
 
 export default function App() {
   useScrollAnimation();
@@ -30,8 +29,7 @@ export default function App() {
       <Contact />
       <Footer />
       
-      {/* ✅ SakshamVerse AI Chatbot */}
-      <AiChat />
+    
     </>
   );
 }
