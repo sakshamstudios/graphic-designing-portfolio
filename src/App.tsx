@@ -6,8 +6,11 @@ import { About } from "./components/About";
 import { Testimonials } from "./components/Testimonials";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
-import { AnimatedBackground } from "./components/AnimatedBackground"; // ✅ Correct import
+import { AnimatedBackground } from "./components/AnimatedBackground";
 import { useScrollAnimation } from "./hooks/useScrollAnimation";
+
+// ✅ Import chatbot component
+import AiChat from './ai-bot';
 
 export default function App() {
   useScrollAnimation();
@@ -26,6 +29,9 @@ export default function App() {
       <Testimonials />
       <Contact />
       <Footer />
+      
+      {/* ✅ SakshamVerse AI Chatbot */}
+      <AiChat />
     </>
   );
 }

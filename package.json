@@ -7,15 +7,23 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node api/openrouterProxy.js",
+    "client": "vite"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@splinetool/react-spline": "^4.0.0",
+    "axios": "^1.11.0",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
     "framer-motion": "^10.18.0",
     "gsap": "^3.13.0",
     "lenis": "^1.3.4",
     "lucide-react": "^0.344.0",
+    "node-fetch": "^3.3.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.5.0",
@@ -37,5 +45,18 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.3.0",
     "vite": "^5.4.2"
-  }
+  },
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sakshamstudios/graphic-designing-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sakshamstudios/graphic-designing-portfolio/issues"
+  },
+  "homepage": "https://github.com/sakshamstudios/graphic-designing-portfolio#readme",
+  "description": ""
 }
