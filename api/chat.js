@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         'HTTP-Referer': 'https://sakshamverse-neon.vercel.app', // your actual site domain
       },
       body: JSON.stringify({
-        model: 'openchat/openchat-7b',
+        model: "openchat/openchat-7b:free",
         messages,
       }),
     });
